@@ -1,15 +1,23 @@
 // "use strict";
 import * as vscode from "vscode";
 import getHighlights from "./matcher";
+const vsConfig = vscode.workspace.getConfiguration('vsQuickScope')
+const primaryColor = vsConfig.get('primaryHighlight')
+const secondaryColor = vsConfig.get('secondaryHighlight')
+// vscode.workspace.getConfiguration("vscode-quick-scope")
 
 const primaryDecorationType = vscode.window.createTextEditorDecorationType({
-  backgroundColor: new vscode.ThemeColor("editor.selectionBackground")
+	// color: "#ff4400",
+  color: primaryColor
+	// color: vsQuickScope.primaryHighlight,
+	// backgroundColor: new vscode.ThemeColor("editor.selectionBackground")
 });
 
 const secondaryDecorationType = vscode.window.createTextEditorDecorationType({
-  borderWidth: "1px",
-  borderStyle: "solid",
-  borderColor: new vscode.ThemeColor("editor.selectionBackground")
+  // borderWidth: "1px",
+  // borderStyle: "solid",
+	color: secondaryColor
+  // borderColor: new vscode.ThemeColor("editor.selectionBackground")
 });
 
 export function activate(context: vscode.ExtensionContext) {
